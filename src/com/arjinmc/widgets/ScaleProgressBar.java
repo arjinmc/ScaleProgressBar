@@ -3,6 +3,8 @@ package com.arjinmc.widgets;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
+import android.graphics.Paint.FontMetrics;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.CountDownTimer;
@@ -39,6 +41,12 @@ public class ScaleProgressBar extends View{
 	private final int ALTER_LENTH = 2;
 	/**the path width for progress*/
 	private final int PATH_WIDTH = 2;
+	/**the path width for text*/
+	private final int TEXT_WIDTH = 1;
+	/**the size for text*/
+	private final int TEXT_SIZE = 20;
+	/**the text maring top*/
+	private final int MARGIN_TOP = 10;
 	
 	/**the progress paint*/
 	private Paint pPaint;
@@ -48,6 +56,8 @@ public class ScaleProgressBar extends View{
 	private Paint sCirclePaint;
 	/**the square paint*/
 	private Paint squarePaint;
+	/**the text paint*/
+	private Paint textPaint;
 	
 	/**a timer for drawing animation*/
 	private CountDownTimer timer = new CountDownTimer(DURATION_TIME,DURATION_UNIT) {
@@ -93,6 +103,14 @@ public class ScaleProgressBar extends View{
 		squarePaint.setColor(COLOR_TRANSLUCENT);
 		squarePaint.setAntiAlias(true);  
 		
+		textPaint = new Paint();
+		textPaint.setStyle(Paint.Style.FILL);
+		textPaint.setColor(COLOR_PROGETSS);
+		textPaint.setStrokeWidth(TEXT_WIDTH);
+		textPaint.setTextSize(TEXT_SIZE);
+		textPaint.setAntiAlias(true);  
+		textPaint.setTextAlign(Align.CENTER);  
+		
 	}
 	
 	@Override
@@ -100,13 +118,24 @@ public class ScaleProgressBar extends View{
 		int halfWidth = getWidth() / 2;
 		int halfHeight = getHeight() /2;
 		//this way to draw the path for progress
-		if(progress<MAX_PROGRESS){
+		if(progress<=MAX_PROGRESS){
 			canvas.drawColor(COLOR_TRANSLUCENT);
 			pRectF.top = halfHeight - RADIUS_PROGRESS;
 			pRectF.bottom = halfHeight + RADIUS_PROGRESS;
 			pRectF.left = halfWidth - RADIUS_PROGRESS;
 			pRectF.right = halfWidth + RADIUS_PROGRESS;
 			canvas.drawArc(pRectF, -90, ((float)progress/(float)MAX_PROGRESS)*360, false, pPaint);
+			
+			//draw a text to show loading percent
+			String textString = "Loading"+(int)((float)progress/(float)MAX_PROGRESS*100)+"%";
+			FontMetrics fontMetrics = pPaint.getFontMetrics();  
+			float top = fontMetrics.top;
+		    float ascent = fontMetrics.ascent;  
+		    float bottom = fontMetrics.bottom;
+			float baseX = halfWidth;  
+			float baseY = pRectF.bottom+(bottom-top)+MARGIN_TOP;  
+			canvas.drawText(textString, baseX-(ascent-top), baseY, textPaint);  
+			
 			//canvas.save();
 		//this way to draw the images when animation start
 		}else{
