@@ -34,9 +34,11 @@ public class ScaleProgressBar extends View{
 	private final int RADIUS_BIG_CIRCLE = 100;
 	
 	private final int DURATION_TIME = 2000;
-	private final int DURATION_UNIT = 100;
+	private final int DURATION_UNIT = 200;
 	/**the unit of alter lenth for circle*/
 	private final int ALTER_LENTH = 2;
+	/**the path width for progress*/
+	private final int PATH_WIDTH = 2;
 	
 	/**the progress paint*/
 	private Paint pPaint;
@@ -78,14 +80,18 @@ public class ScaleProgressBar extends View{
 		pPaint = new Paint();
 		pPaint.setStyle(Paint.Style.STROKE);
 		pPaint.setColor(COLOR_PROGETSS);
+		pPaint.setStrokeWidth(PATH_WIDTH);
+		pPaint.setAntiAlias(true);  
 		
 		sCirclePaint = new Paint();
 		sCirclePaint.setStyle(Paint.Style.FILL);
 		sCirclePaint.setColor(COLOR_S_CIRCLE);
+		sCirclePaint.setAntiAlias(true);  
 		
 		squarePaint = new Paint();
 		squarePaint.setStyle(Paint.Style.FILL);
 		squarePaint.setColor(COLOR_TRANSLUCENT);
+		squarePaint.setAntiAlias(true);  
 		
 	}
 	
@@ -101,7 +107,7 @@ public class ScaleProgressBar extends View{
 			pRectF.left = halfWidth - RADIUS_PROGRESS;
 			pRectF.right = halfWidth + RADIUS_PROGRESS;
 			canvas.drawArc(pRectF, -90, ((float)progress/(float)MAX_PROGRESS)*360, false, pPaint);
-			canvas.save();
+			//canvas.save();
 		//this way to draw the images when animation start
 		}else{
 			int alter = progress-MAX_PROGRESS;
@@ -110,7 +116,7 @@ public class ScaleProgressBar extends View{
 			path.addCircle(halfWidth, halfHeight,RADIUS_BIG_CIRCLE+alter*ALTER_LENTH,Path.Direction.CCW);
 			canvas.drawPath(path, squarePaint);
 			canvas.drawCircle(halfWidth, halfHeight, RADIUS_PROGRESS-alter*ALTER_LENTH, sCirclePaint);
-			canvas.save();
+			//canvas.save();
 		}
 		super.onDraw(canvas);
 	}
