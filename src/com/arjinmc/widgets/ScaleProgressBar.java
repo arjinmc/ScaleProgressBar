@@ -35,7 +35,7 @@ public class ScaleProgressBar extends View{
 	
 	private final int DURATION_TIME = 2000;
 	private final int DURATION_UNIT = 100;
-	/**the unit for alter lenth for circle*/
+	/**the unit of alter lenth for circle*/
 	private final int ALTER_LENTH = 2;
 	
 	/**the progress paint*/
@@ -93,6 +93,7 @@ public class ScaleProgressBar extends View{
 	protected void onDraw(Canvas canvas) {
 		int halfWidth = getWidth() / 2;
 		int halfHeight = getHeight() /2;
+		//this way to draw the path for progress
 		if(progress<MAX_PROGRESS){
 			canvas.drawColor(COLOR_TRANSLUCENT);
 			pRectF.top = halfHeight - RADIUS_PROGRESS;
@@ -101,6 +102,7 @@ public class ScaleProgressBar extends View{
 			pRectF.right = halfWidth + RADIUS_PROGRESS;
 			canvas.drawArc(pRectF, -90, ((float)progress/(float)MAX_PROGRESS)*360, false, pPaint);
 			canvas.save();
+		//this way to draw the images when animation start
 		}else{
 			int alter = progress-MAX_PROGRESS;
 			Path path = new Path();
