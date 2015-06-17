@@ -154,14 +154,8 @@ public class ScaleProgressBar extends View{
 		this.progress = progress;
 		invalidate();
 		if(progress==MAX_PROGRESS){
-			showAnimation();
+			timer.start();
 		}
 	}
-	
-	public void showAnimation(){
-		timer.start();
-	}
-	
-	
 
 }
