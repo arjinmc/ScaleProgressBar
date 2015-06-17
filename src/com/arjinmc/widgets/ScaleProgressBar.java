@@ -115,6 +115,9 @@ public class ScaleProgressBar extends View{
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
+		if(this.getVisibility()!=View.VISIBLE){
+			this.setVisibility(View.VISIBLE);
+		}
 		int halfWidth = getWidth() / 2;
 		int halfHeight = getHeight() /2;
 		//this way to draw the path for progress
