@@ -72,7 +72,11 @@ public class ScaleProgressBar extends View{
 		
 		@Override
 		public void onFinish() {
-			spDialog.callDismiss();
+			if(spDialog!=null){
+				spDialog.callDismiss();
+			}else {
+				ScaleProgressBar.this.setVisibility(View.GONE);
+			}
 		}
 	};
 
@@ -159,6 +163,9 @@ public class ScaleProgressBar extends View{
 	}
 	
 	public void setProgress(int progress){
+		if(spDialog==null && getVisibility()!=View.VISIBLE){
+			setVisibility(View.VISIBLE);
+		}
 		this.progress = progress;
 		invalidate();
 		if(progress==MAX_PROGRESS){
