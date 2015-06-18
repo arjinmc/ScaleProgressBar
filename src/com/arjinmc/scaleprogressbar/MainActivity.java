@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.arjinmc.widgets.ScaleProgressBar;
+import com.arjinmc.widgets.ScaleProgressDialog;
 
 /**
  * Main
@@ -20,7 +19,7 @@ import com.arjinmc.widgets.ScaleProgressBar;
  */
 public class MainActivity extends Activity {
 
-	private ScaleProgressBar spBar;
+	private ScaleProgressDialog spDialog;
 	private Button btn;
 	
 	/**
@@ -30,20 +29,19 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void onTick(long millisUntilFinished) {
-			//Log.e("running", millisUntilFinished+"");
 			mHandler.sendEmptyMessage(100-(int)millisUntilFinished/100);
 		}
 		
 		@Override
 		public void onFinish() {
-			mHandler.sendEmptyMessage(spBar.MAX_PROGRESS);
+			mHandler.sendEmptyMessage(spDialog.MAX_PROGRESS);
 		}
 	};
 	
 	private Handler mHandler = new Handler(){
 		
 		public void handleMessage(android.os.Message msg) {
-			spBar.setProgress(msg.what);
+			spDialog.setProgress(msg.what);
 		};
 	};
 
@@ -57,12 +55,13 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				spDialog.show();
 				timer.start();
-				
 			}
 		});
 		
-		spBar = (ScaleProgressBar) findViewById(R.id.spb);
+		spDialog = new ScaleProgressDialog(this);
+		spDialog.show();
 		timer.start();
 	}
 }

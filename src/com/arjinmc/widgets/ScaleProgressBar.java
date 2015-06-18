@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -60,6 +59,8 @@ public class ScaleProgressBar extends View{
 	/**the text paint*/
 	private Paint textPaint;
 	
+	private ScaleProgressDialog spDialog;
+	
 	/**a timer for drawing animation*/
 	private CountDownTimer timer = new CountDownTimer(DURATION_TIME,DURATION_UNIT) {
 		
@@ -71,22 +72,31 @@ public class ScaleProgressBar extends View{
 		
 		@Override
 		public void onFinish() {
-			ScaleProgressBar.this.setVisibility(View.GONE);
+			spDialog.callDismiss();
 		}
 	};
 
 	public ScaleProgressBar(Context context) {
 		super(context);
+		initPaints();
 	}
-		
 	
 	public ScaleProgressBar(Context context, AttributeSet attrs){
 		this(context, attrs, 0);
+		initPaints();
 	}
 	
 	public ScaleProgressBar(Context context, AttributeSet attrs, int defStyle){
 		super(context, attrs, defStyle);
+		initPaints();
+	}
+	
+	public void setDialog(ScaleProgressDialog spDialog){
+		this.spDialog = spDialog;
+	}
 		
+	
+	private void initPaints(){
 		//init Paints and RectF
 		pPaint = new Paint();
 		pPaint.setStyle(Paint.Style.STROKE);
@@ -111,7 +121,6 @@ public class ScaleProgressBar extends View{
 		textPaint.setTextSize(TEXT_SIZE);
 		textPaint.setAntiAlias(true);  
 		textPaint.setTextAlign(Align.CENTER);  
-		
 	}
 	
 	@Override
@@ -150,16 +159,16 @@ public class ScaleProgressBar extends View{
 	}
 	
 	public void setProgress(int progress){
-		if(this.getVisibility()!=View.VISIBLE){
-			this.setVisibility(View.VISIBLE);
-			this.requestFocus();
-		}
-		
 		this.progress = progress;
 		invalidate();
 		if(progress==MAX_PROGRESS){
 			timer.start();
 		}
+	}
+	
+	//to callback ScaleProgressDialog to dismiss
+	public interface OnAnimationFinishListener {
+		public void callDismiss();
 	}
 
 }
