@@ -17,7 +17,7 @@ You can use ScaleProgressBar(will not stuck in ui thread) like this
 	ScaleProgressBar spBar = (ScaleProgressBar) findViewById(R.id.spb);
 	spBar.setProgress(20);
 ``` 
-
+ 
 Or you can use ScaleProgressDilog(will stuck in ui thread) like this
 ``` java
   ScaleProgressDialog spDialog = new ScaleProgressDialog(this);
