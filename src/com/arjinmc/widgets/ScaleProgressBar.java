@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -115,9 +116,6 @@ public class ScaleProgressBar extends View{
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		if(this.getVisibility()!=View.VISIBLE){
-			this.setVisibility(View.VISIBLE);
-		}
 		int halfWidth = getWidth() / 2;
 		int halfHeight = getHeight() /2;
 		//this way to draw the path for progress
@@ -133,11 +131,9 @@ public class ScaleProgressBar extends View{
 			String textString = "Loading"+(int)((float)progress/(float)MAX_PROGRESS*100)+"%";
 			FontMetrics fontMetrics = pPaint.getFontMetrics();  
 			float top = fontMetrics.top;
-		    float ascent = fontMetrics.ascent;  
 		    float bottom = fontMetrics.bottom;
-			float baseX = halfWidth;  
 			float baseY = pRectF.bottom+(bottom-top)+MARGIN_TOP;  
-			canvas.drawText(textString, baseX-(ascent-top), baseY, textPaint);  
+			canvas.drawText(textString, halfWidth, baseY, textPaint);  
 			
 			//canvas.save();
 		//this way to draw the images when animation start
@@ -154,6 +150,11 @@ public class ScaleProgressBar extends View{
 	}
 	
 	public void setProgress(int progress){
+		if(this.getVisibility()!=View.VISIBLE){
+			this.setVisibility(View.VISIBLE);
+			this.requestFocus();
+		}
+		
 		this.progress = progress;
 		invalidate();
 		if(progress==MAX_PROGRESS){
