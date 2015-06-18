@@ -12,7 +12,7 @@ You can use ScaleProgressBar(will not stuck in ui thread) like this
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 ``` 
-2. in java
+2.in java
 ``` java 
 	ScaleProgressBar spBar = (ScaleProgressBar) findViewById(R.id.spb);
 	spBar.setProgress(20);
