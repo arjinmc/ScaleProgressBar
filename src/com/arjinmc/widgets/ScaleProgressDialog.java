@@ -2,6 +2,8 @@ package com.arjinmc.widgets;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -42,6 +44,8 @@ public class ScaleProgressDialog extends AlertDialog implements ScaleProgressBar
         window.setAttributes(lp);    
         //forbidden dialog animatinon 
         window.setWindowAnimations(0);
+        //set the dialog for full screen
+        window.setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         spbProgressBar = new ScaleProgressBar(mContext);
         //set this dailog for callback
         spbProgressBar.setDialog(this);
