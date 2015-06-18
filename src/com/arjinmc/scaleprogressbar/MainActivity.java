@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 		
 		@Override
 		public void onTick(long millisUntilFinished) {
-			Log.e("running", millisUntilFinished+"");
+			//Log.e("running", millisUntilFinished+"");
 			mHandler.sendEmptyMessage(100-(int)millisUntilFinished/100);
 		}
 		
