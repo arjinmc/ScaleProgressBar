@@ -13,5 +13,5 @@ You can use ScaleProgressBar like this
 Or you can use ScaleProgressDilog like this
 ``` java
   ScaleProgressDialog spDialog = new ScaleProgressDialog(this);
-		spDialog.show();
+  spDialog.show();
 ``` 
