@@ -86,7 +86,7 @@ public class ScaleProgressBar extends View{
 	}
 	
 	public ScaleProgressBar(Context context, AttributeSet attrs){
-		this(context, attrs, 0);
+		super(context,attrs);
 		initPaints();
 	}
 	
