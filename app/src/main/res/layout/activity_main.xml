@@ -2,26 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}"
-    android:background="#ff0000" >
+    android:background="#ff0000">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:text="@string/hello_world"
         android:textColor="#00ff00"
         android:textSize="24sp"
-        android:layout_centerInParent="true"
-        android:text="@string/hello_world" />
-    
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="start progress"
-        />
-    
+        android:text="start progress" />
+
     <!-- 
     <com.arjinmc.widgets.ScaleProgressBar 
         android:id="@+id/spb"
