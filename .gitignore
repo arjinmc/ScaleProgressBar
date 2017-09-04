@@ -1,2 +1,14 @@
 /bin
 /gen
+.DS_Store
+.gradle/
+.idea/
+ScaleProgressBar.iml
+app/.DS_Store
+app/app.iml
+app/build/
+app/src/.DS_Store
+app/src/main/.DS_Store
+app/src/main/java/.DS_Store
+build/
+local.properties
