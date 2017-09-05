@@ -1,11 +1,10 @@
 # ScaleProgressBar
-a customer progressbar for loading effect.
-
+一个自定义开场Loading
+  
 ![image](https://github.com/arjinmc/ScaleProgressBar/blob/master/effect.gif)  
+ 
 
-[中文版](README_CN.md)
-
-You can use ScaleProgressBar(will not be stucked in ui thread) like this  
+你可以使用ScaleProgressBar(但不会阻塞UI线程)，像这样
 1.in xml 
 ``` java
     <com.arjinmc.widgets.ScaleProgressBar 
@@ -19,13 +18,13 @@ You can use ScaleProgressBar(will not be stucked in ui thread) like this
 	spBar.setProgress(20);
 ``` 
  
-Or you can use ScaleProgressDialog(will be stucked in ui thread) like this
+或者你可以用ScaleProgressDialog(会阻塞UI线程)，像这样
 ``` java
   ScaleProgressDialog spDialog = new ScaleProgressDialog(this);
   spDialog.show();
   spDialog.setProgress(20);
 ``` 
-Also you can use ScaleProgressDialog.Builder like this,I hope you use this method
+你还可以用ScaleProgressDialog.Builder像这样,而且我希望你用这种方式
 ```java
  mScaleProgressDialog = new ScaleProgressDialog.Builder(this)
                 .textColor(Color.WHITE)
