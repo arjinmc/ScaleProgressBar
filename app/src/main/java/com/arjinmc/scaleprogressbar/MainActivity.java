@@ -1,6 +1,7 @@
 package com.arjinmc.scaleprogressbar;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -63,7 +64,21 @@ public class MainActivity extends Activity {
             }
         });
 
-        mScaleProgressDialog = new ScaleProgressDialog(this);
+//        mScaleProgressDialog = new ScaleProgressDialog(this);
+        //this way will be better
+        mScaleProgressDialog = new ScaleProgressDialog.Builder(this)
+                .textColor(Color.WHITE)
+                .textSize(30)
+                .textMarginTop(100)
+                .text("loading...")
+                .scaleBigCircleRadius(300)
+                .scaleSmallCircleRadius(100)
+                .scaleSmallCircleColor(Color.WHITE)
+                .alterLength(10)
+                .progressColor(Color.WHITE)
+                .progressThickness(20)
+                .create();
+
         mScaleProgressDialog.show();
         timer.start();
     }
