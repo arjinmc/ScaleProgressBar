@@ -15,7 +15,7 @@ import android.view.View;
 /**
  * ScaleProgressBar
  *
- * @author Eminem Loo
+ * @author Eminem Lo
  * @description
  * @email arjinmc@hotmail.com
  * @date 2015/6/17

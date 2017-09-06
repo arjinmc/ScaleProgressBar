@@ -16,7 +16,7 @@ import static android.R.attr.textColor;
 /**
  * ScaleProgressDialog
  *
- * @author Eminem Loo
+ * @author Eminem Lo
  * @description
  * @email arjinmc@hotmail.com
  * @date 2015/6/18
